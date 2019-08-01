@@ -4,7 +4,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 import plotly.graph_objs as go
-from plotly import tools
+from plotly import subplots
 import ctypes
 import numpy as np
 import pandas as pd
@@ -73,7 +73,7 @@ def make_static_figure(df, duration=None, lightweight_mode=True):
   
     traces = make_static_traces(df, duration=duration)
 
-    fig = tools.make_subplots(
+    fig = subplots.make_subplots(
                         rows=2, 
                         cols=1, 
                         specs=[[{}], [{}]],
@@ -87,6 +87,10 @@ def make_static_figure(df, duration=None, lightweight_mode=True):
     fig.add_traces(traces['data'])
 
     fig['layout'].update(**settings['layout'])
+    fig.update_xaxes(gridcolor='#444444', zerolinecolor='#7FDBFF', row=1, col=1)
+    fig.update_xaxes(gridcolor='#444444', zerolinecolor='#7FDBFF', row=2, col=1)
+    fig.update_yaxes(gridcolor='#444444', zerolinecolor='#7FDBFF', row=1, col=1)
+    fig.update_yaxes(gridcolor='#444444', zerolinecolor='#7FDBFF', row=2, col=1)
 
     return fig
 
