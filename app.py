@@ -87,10 +87,6 @@ def make_static_figure(df, duration=None, lightweight_mode=True):
     fig.add_traces(traces['data'])
 
     fig['layout'].update(**settings['layout'])
-    fig.update_xaxes(gridcolor='#444444', zerolinecolor='#7FDBFF', row=1, col=1)
-    fig.update_xaxes(gridcolor='#444444', zerolinecolor='#7FDBFF', row=2, col=1)
-    fig.update_yaxes(gridcolor='#444444', zerolinecolor='#7FDBFF', row=1, col=1)
-    fig.update_yaxes(gridcolor='#444444', zerolinecolor='#7FDBFF', row=2, col=1)
 
     return fig
 
