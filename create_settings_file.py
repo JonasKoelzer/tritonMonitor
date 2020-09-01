@@ -2,7 +2,7 @@ import json
 
 settings=dict()
 
-settings['log_file'] = r"\\134.61.7.160\LogFiles\60555 Bluhm\log 190703 170733.vcl"
+settings['log_file'] = r"/Users/jonaskolzer/Downloads/log 200418 090850.vcl"
 
 settings['colors'] = {
     'background': '#333333',
@@ -74,5 +74,5 @@ settings['misc_sensors']=[
             'turbo bottom(C)'
             ]
 
-with open('triton200.json','w') as file:
+with open('triton201.json','w') as file:
     json.dump(settings,file, indent=4, sort_keys=True)

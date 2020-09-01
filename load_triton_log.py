@@ -41,6 +41,7 @@ def parse_triton_log(bin_data) -> pd.DataFrame:
     name_block = rest[:name_block_size]
     rest = rest[name_block_size:]
 
+
     names = []
     for idx in range(0, name_block_size, name_len):
         name = parse_cstr(name_block[idx:idx+name_len])

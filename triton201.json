@@ -1,7 +1,6 @@
 {
-	"fridge_name": "Triton 200",
     "MC_Cernox": "MC Plate Cernox T(K)",
-    "MC_RuOx": "MC Plate T(K)",
+    "MC_RuOx": "MC Plate RuO2 T(K)",
     "Magnet": "Magnet T(K)",
     "colors": {
         "background": "#333333",
@@ -11,6 +10,7 @@
     "external_stylesheets": [
         "./static/bWLwgP.css"
     ],
+    "fridge_name": "Triton 200",
     "gridcolor": "#555555",
     "lakeshore_sensors": [
         "PT1 Head",
@@ -20,7 +20,7 @@
         "Magnet",
         "Still Plate",
         "Cold Plate",
-        "MC Plate",
+        "MC Plate RuO2",
         "MC Plate Cernox"
     ],
     "layout": {
