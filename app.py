@@ -3,7 +3,7 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 import plotly.graph_objs as go
 from plotly import subplots
 import ctypes
@@ -175,9 +175,25 @@ log_reader = [html.Label('MISC Channels',
             id='misc_dropdown'
             ),
             dcc.Graph(id='misc_plot')]
+#Creates a button allowing to save the logfile as CSV:
+button = [
+            html.Label('Export log data to server',
+                style={'textAlign': 'center',
+                      'color': settings['colors']['text']}, ),
+            html.Label('File path (e.g. ~/Desktop/test.csv):',
+                style={'color': settings['colors']['text']}, ),
+            html.Div(dcc.Input(id='file-path', type='text')),
+            html.Button('Save as CSV',id='save_csv', 
+                style={'textAlign': 'center',
+                      'color': settings['colors']['text']}, ),
+            html.Div(id='output-container-button',
+                children='',
+                style={'textAlign': 'center',
+                      'color': settings['colors']['text']},)
+            ]
 
 
-page_fridge_1 = dashboard + log_reader
+page_fridge_1 = dashboard + log_reader + button
 
 
 app.layout = html.Div( # Main Div
@@ -264,6 +280,17 @@ def update_misc_figure(plot_traces):
         'data': traces,
         'layout': settings['layout']        
     }
+
+
+@app.callback(
+    Output('output-container-button', 'children'),
+    [Input('save_csv', 'n_clicks')],
+    [State('file-path', 'value')])
+def save_csv(n_clicks,value):
+    #value='~/Desktop/test.csv'
+    Log.df.to_csv(str(value))
+    return 'Export succeded.'
+
 
 if __name__ == '__main__':
     logger.debug('Starting app')
