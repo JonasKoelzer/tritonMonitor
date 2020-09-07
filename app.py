@@ -3,6 +3,7 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_auth 
 from dash.dependencies import Input, Output, State
 import plotly.graph_objs as go
 from plotly import subplots
@@ -18,7 +19,6 @@ import json
 import socket
 import argparse
 
-
 # TODO Optimize Colors
 # TODO Catch if sensor on top is disabled, switch between 2 MC Sensors?
 
@@ -29,6 +29,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--filename', default='triton200.json')
 parser.add_argument('--port', type=int, default=8080)
 parser.add_argument('--host', type=str, default='auto')
+VALID_USERNAME_PASSWORD_PAIRS = {
+    'hello':'world'
+}
 
 args = parser.parse_args()
 
@@ -126,6 +129,11 @@ def make_static_figure(df, duration=None, lightweight_mode=True):
 
 # Create dash app, expose flask server (change localhost to expose server?)
 app = dash.Dash(__name__, external_stylesheets=settings['external_stylesheets'],show_undo_redo=False)
+auth = dash_auth.BasicAuth(
+    app,
+    VALID_USERNAME_PASSWORD_PAIRS
+    )
+
 server = app.server
 
 app.title = settings['fridge_name'] + ' Fridge Monitor'
